@@ -1,0 +1,13 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: my-python-program-test
+spec:
+  template:
+    spec:
+      containers:
+      - name: my-python-program
+        image: python:3.7
+        command: ["python",  "-c", "print('hello.................')"]
+      restartPolicy: Never
+  backoffLimit: 4
