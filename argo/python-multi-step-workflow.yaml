@@ -1,0 +1,36 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow
+metadata:
+  generateName: python-multi-step-workflow-
+spec:
+  entrypoint: python-multi-step-workflow
+  templates:
+  - name: python-multi-step-workflow
+    steps:
+    - - name: step1        
+        template: python-print
+        arguments:
+          parameters:
+          - name: message
+            value: "hello1............."
+    - - name: step2        
+        template: python-print
+        arguments:
+          parameters:
+          - name: message
+            value: "hello2............."
+    - - name: step3          
+        template: python-print
+        arguments:
+          parameters:
+          - name: message
+            value: "hello3............."
+
+  - name: python-print
+    inputs:
+      parameters:
+      - name: message
+    container:
+      image: python:3.7
+      command: [python, -c, import sys;print(sys.argv)]
+      args: ["{{inputs.parameters.message}}"]
