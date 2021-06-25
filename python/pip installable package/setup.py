@@ -1,10 +1,11 @@
 import setuptools
 
 setuptools.setup(
+    include_package_data=True,
     name='limeguru',
     version='0.0.1',
     description='limeguru python module',
-    url='https://stash.aexp.com/stash/projects/AIM500001213/repos/mlops-utils/browse',
+    url='https://github.com/limegurutech/examples/tree/main/python/pip%20installable%20package',
     author='Limeguru',
     author_email='contact@limeguru.com',
     packages=setuptools.find_packages(),
