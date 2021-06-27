@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/dbaweja/my/lg/examples/mlflow/mlflow-pyspark/mlruns/0/6c39a41c76ea432093c83ca8aa97a33e/artifacts
+end_time: 1624775504134
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+name: ''
+run_id: 6c39a41c76ea432093c83ca8aa97a33e
+run_uuid: 6c39a41c76ea432093c83ca8aa97a33e
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1624775497182
+status: 3
+tags: []
+user_id: dbaweja

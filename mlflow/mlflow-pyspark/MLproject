@@ -1,0 +1,6 @@
+name: my-program
+entry_points:
+  main:
+    parameters:
+      filename: {type: string, default: input_file.txt}
+    command: "spark-submit word_count_pyspark.py {filename}"
