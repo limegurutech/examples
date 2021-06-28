@@ -1,0 +1,26 @@
+sqlite3 demo
+
+.tables
+create table limeguru(courses TEXT, cnt INTEGER);
+.tables
+.schema limeguru
+
+select * from limeguru;
+
+insert into limeguru values('java',10);
+insert into limeguru values('python',20);
+insert into limeguru values('big data',30);
+insert into limeguru values('data science',10);
+
+select * from limeguru;
+
+select count(*) from limeguru;
+
+select sum(cnt) from limeguru;
+
+
+insert into limeguru values('java',10);
+insert into limeguru values('python',20);
+
+select * from limeguru;
+select courses, sum(cnt) from limeguru group by courses;
