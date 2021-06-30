@@ -1,0 +1,3 @@
+{"name":"John", "age":30, "country":"US"}
+{"name":"Ben", "age":35, "country":"UK"}
+{"name":"Marc", "age":25, "country":"US"}
