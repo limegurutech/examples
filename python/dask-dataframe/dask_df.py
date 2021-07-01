@@ -15,3 +15,4 @@ df['date'] = df['Formatted Date'].dt.date
 
 daily_mean = df.groupby("date")['Temperature (C)'].mean().compute()
 print("Temp daily_mean: "+ str(daily_mean))
+
