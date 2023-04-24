@@ -13,28 +13,24 @@ public class MyStructuredStreamingJob {
 
 	public static void main(String[] args) throws StreamingQueryException {
 
-		SparkSession spark = SparkSession.builder().
-				appName("MyStructuredStreamingJob").master("local[*]")
+		SparkSession spark = SparkSession.builder().appName("MyStructuredStreamingJob").master("local[*]")
 				.getOrCreate();
-		Dataset<Row> df = spark.readStream().format("kafka").
-				option("kafka.bootstrap.servers", "127.0.0.1:9092")
+		Dataset<Row> df = spark.readStream().format("kafka").option("kafka.bootstrap.servers", "127.0.0.1:9092")
 				.option("subscribe", "mytopic").option("includeHeaders", "true").load();
 		df = df.selectExpr("CAST(topic AS STRING)", "CAST(partition AS STRING)",
 				"CAST(offset AS STRING)",
 				"CAST(value AS STRING)");
 
-		StructType emp_schema = new StructType().add("name", DataTypes.StringType).
-				add("age", DataTypes.StringType)
+		StructType emp_schema = new StructType().add("name", DataTypes.StringType).add("age", DataTypes.StringType)
 				.add("country", DataTypes.StringType);
 
-		df = df.select(functions.col("topic"), functions.col("partition"), 
+		df = df.select(functions.col("topic"), functions.col("partition"),
 				functions.col("offset"),
 				functions.from_json(functions.col("value"), emp_schema).alias("data"));
 		df = df.select("topic", "partition", "offset", "data.*");
 
-		StreamingQuery query = df.writeStream().format("console").
-				option("truncate", "False")
-				.option("checkpointLocation", "src/main/resources/checkpoint")
+		StreamingQuery query = df.writeStream().format("console").option("truncate", "False")
+				// .option("checkpointLocation", "src/main/resources/checkpoint")
 				.start();
 		query.awaitTermination();
 
