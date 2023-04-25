@@ -14,6 +14,7 @@ public class MyStructuredStreamingJob {
 	public static void main(String[] args) throws StreamingQueryException {
 
 		SparkSession spark = SparkSession.builder().appName("MyStructuredStreamingJob").master("local[*]")
+				.config("spark.dynamicAllocation.enabled", "true")
 				.getOrCreate();
 		Dataset<Row> df = spark.readStream().format("kafka").option("kafka.bootstrap.servers", "127.0.0.1:9092")
 				.option("subscribe", "mytopic").option("includeHeaders", "true").load();
@@ -30,7 +31,7 @@ public class MyStructuredStreamingJob {
 		df = df.select("topic", "partition", "offset", "data.*");
 
 		StreamingQuery query = df.writeStream().format("console").option("truncate", "False")
-				// .option("checkpointLocation", "src/main/resources/checkpoint")
+				.option("checkpointLocation", "src/main/resources/checkpoint")
 				.start();
 		query.awaitTermination();
 
