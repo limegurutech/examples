@@ -1,3 +1,6 @@
 {"name":"John", "age":30, "country":"US"}
 {"name":"Ben", "age":35, "country":"UK"}
 {"name":"Marc", "age":25, "country":"US"}
+{"name":"tarun", "age":25, "country":"India"}
+{"name":"murali", "age":35, "country":"CHINA"}
+{"name":"Mohan", "age":25, "country":"England"}
